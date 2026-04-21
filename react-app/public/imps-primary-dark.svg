@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" width="480" height="160">
+  
+  <g fill="#B83A3A">
+    <path d="M 38 44 L 46 22 L 54 44 Z"></path>
+    <path d="M 62 44 L 70 22 L 78 44 Z"></path>
+  </g>
+  <g font-family="&#39;JetBrains Mono&#39;, ui-monospace, Menlo, monospace" font-weight="600">
+    <text x="28" y="112" font-size="92" fill="#B83A3A">&gt;</text>
+    <text x="96" y="112" font-size="92" fill="#0C0E12" letter-spacing="-1">imps</text>
+    <rect x="318" y="104" width="40" height="12" fill="#0C0E12"></rect>
+  </g>
+</svg>

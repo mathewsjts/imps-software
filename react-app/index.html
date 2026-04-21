@@ -19,7 +19,12 @@
     <meta name="twitter:description" content="Software, games, and everything in between." />
 
     <meta name="theme-color" content="#0C0E12" />
-    <link rel="icon" type="image/svg+xml" href="/imps-mark.svg" />
+    <!-- Favicons — adaptive light/dark -->
+    <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg"  media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: dark)">
+    <!-- Fallback for browsers that ignore media on <link rel=icon> -->
+    <link rel="alternate icon" type="image/svg+xml" href="/favicon-dark.svg">
+    <link rel="apple-touch-icon" href="/favicon-dark.svg">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
