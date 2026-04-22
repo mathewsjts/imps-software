@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 html, body { margin: 0; padding: 0; overflow-x: hidden; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body { background: #0C0E12; color: #fff; -webkit-font-smoothing: antialiased; }
 
 @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }

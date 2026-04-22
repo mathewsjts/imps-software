@@ -13,7 +13,11 @@ export default function Footer() {
               Software, games, and everything in between. Made with mischief.
             </div>
           </div>
-          <FootCol title="Studio" items={['Work', 'Services', 'Process']} />
+          <FootCol title="Studio" items={[
+            { label: 'Services', href: '#services' },
+            { label: 'Work', href: '#work' },
+            { label: 'Process', href: '#process' },
+          ]} />
           <FootCol title="Elsewhere" items={['GitHub \u2197', 'Bluesky \u2197', 'itch.io \u2197']} />
           <FootCol title="Contact" items={['Start a project', 'Press kit']} />
         </div>
@@ -36,7 +40,15 @@ function FootCol({ title, items }) {
     <div>
       <h5 className="text-ink-500 text-[10px] tracking-[0.14em] uppercase m-0 mb-4 font-medium">{title}</h5>
       <ul className="list-none m-0 p-0 flex flex-col gap-2.5 font-sans text-[14px] text-ink-300">
-        {items.map((i) => (<li key={i}><a className="hover:text-imps-red cursor-pointer">{i}</a></li>))}
+        {items.map((i) => {
+          const label = typeof i === 'string' ? i : i.label;
+          const href = typeof i === 'string' ? undefined : i.href;
+          return (
+            <li key={label}>
+              <a className="hover:text-imps-red focus-visible:text-imps-red focus-visible:outline-none focus-visible:underline cursor-pointer" href={href}>{label}</a>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
