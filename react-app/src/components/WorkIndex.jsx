@@ -96,7 +96,7 @@ export default function WorkIndex() {
           </h1>
 
           <p className="font-sans text-[15px] sm:text-[17px] text-ink-300 max-w-[580px] m-0">
-            Games, apps, tools, and the web &mdash; six years of building software for people who care about craft.
+            Games, apps, tools, and the web &mdash; building software for people who care about craft.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-10 sm:mt-14 pt-6 border-t border-ink-700 text-[10px] sm:text-[11px] text-ink-400 tracking-[0.12em] uppercase">

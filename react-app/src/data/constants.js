@@ -1,5 +1,5 @@
 export const CURRENT_YEAR = new Date().getFullYear();
-export const FOUNDING_YEAR = 2020;
+export const FOUNDING_YEAR = 2025;
 export const SITE_NAME = 'IMPS Studio';
 export const DEFAULT_TITLE = `${SITE_NAME} · software, games, and everything in between`;
 

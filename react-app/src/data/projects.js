@@ -4,7 +4,7 @@ const PROJECTS = [
   {
     slug: 'ember',
     name: 'Ember',
-    year: 2024,
+    year: 2025,
     kind: 'Game',
     indexTagline: 'Narrative fireplace game',
     stack: 'Godot 4 \u00b7 GDScript',
@@ -19,7 +19,7 @@ const PROJECTS = [
       { label: 'ENGINE', value: 'Godot 4' },
       { label: 'PLATFORMS', value: 'Steam \u00b7 itch' },
       { label: 'TEAM', value: '2 people' },
-      { label: 'SHIPPED', value: '2024' },
+      { label: 'SHIPPED', value: '2025' },
     ],
     keyArt: { colors: ['#8B2A2A', '#B83A3A', '#D96B3A'], title: 'EMBER' },
     overview: {
@@ -83,7 +83,7 @@ const PROJECTS = [
   {
     slug: 'lumen',
     name: 'Lumen',
-    year: 2024,
+    year: 2025,
     kind: 'App',
     indexTagline: 'Ambient lighting controller',
     stack: 'SwiftUI \u00b7 BLE',
@@ -98,7 +98,7 @@ const PROJECTS = [
       { label: 'STACK', value: 'SwiftUI \u00b7 BLE' },
       { label: 'PLATFORMS', value: 'App' },
       { label: 'TEAM', value: '\u2014' },
-      { label: 'SHIPPED', value: '2024' },
+      { label: 'SHIPPED', value: '2025' },
     ],
     keyArt: { colors: ['#282C34', '#1a1d24', '#B83A3A'], title: 'LUMEN' },
     overview: {

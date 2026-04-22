@@ -5,6 +5,7 @@ import PROJECTS from '../data/projects.js';
 
 const MAX_FEATURED = 5;
 const featured = PROJECTS.filter((p) => p.featured).slice(0, MAX_FEATURED);
+const hasMore = PROJECTS.length > featured.length;
 
 export default function Work() {
   return (
@@ -14,7 +15,7 @@ export default function Work() {
           num="02"
           label="WORK"
           right={`${String(featured.length).padStart(2, '0')} OF ${PROJECTS.length} SHOWN`}
-          title="Shipped last year."
+          title="Recently shipped."
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {featured.map((p) => (
@@ -45,24 +46,41 @@ export default function Work() {
             </Link>
           ))}
 
-          <Link
-            to="/work"
-            aria-label="View all projects"
-            className="bg-ink-800 border border-ink-700 rounded-sm overflow-hidden hover:border-imps-red transition-colors block cursor-pointer"
-          >
-            <div
-              className="aspect-[4/3] flex items-center justify-center font-sans font-extrabold text-[36px] sm:text-[48px] tracking-[-0.03em]"
-              style={{ background: '#B83A3A', color: '#fff' }}
+          {hasMore ? (
+            <Link
+              to="/work"
+              aria-label="View all projects"
+              className="bg-ink-800 border border-ink-700 rounded-sm overflow-hidden hover:border-imps-red transition-colors block cursor-pointer"
             >
-              &#9733;
-            </div>
-            <div className="p-4 sm:p-[18px] flex justify-between items-baseline text-[12px] tracking-[0.1em] uppercase">
-              <div className="text-white font-sans font-semibold tracking-normal normal-case text-[15px]">
-                & more
+              <div
+                className="aspect-[4/3] flex items-center justify-center font-sans font-extrabold text-[36px] sm:text-[48px] tracking-[-0.03em]"
+                style={{ background: '#B83A3A', color: '#fff' }}
+              >
+                &#9733;
               </div>
-              <div className="text-ink-400">{PROJECTS.length} projects</div>
+              <div className="p-4 sm:p-[18px] flex justify-between items-baseline text-[12px] tracking-[0.1em] uppercase">
+                <div className="text-white font-sans font-semibold tracking-normal normal-case text-[15px]">
+                  & more
+                </div>
+                <div className="text-ink-400">{PROJECTS.length} projects</div>
+              </div>
+            </Link>
+          ) : (
+            <div className="bg-ink-800/50 border border-ink-700/50 rounded-sm overflow-hidden">
+              <div
+                className="aspect-[4/3] flex items-center justify-center font-sans font-extrabold text-[36px] sm:text-[48px] tracking-[-0.03em] text-ink-600"
+                style={{ background: '#1a1d24' }}
+              >
+                ...
+              </div>
+              <div className="p-4 sm:p-[18px] flex justify-between items-baseline text-[12px] tracking-[0.1em] uppercase">
+                <div className="text-ink-500 font-sans font-semibold tracking-normal normal-case text-[15px]">
+                  More brewing.
+                </div>
+                <div className="text-ink-600">soon</div>
+              </div>
             </div>
-          </Link>
+          )}
         </div>
       </Container>
     </section>
