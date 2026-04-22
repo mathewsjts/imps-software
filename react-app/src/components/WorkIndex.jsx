@@ -16,21 +16,12 @@ export default function WorkIndex() {
 
   useDocumentTitle('Work');
 
-  const numbered = useMemo(() => {
-    const chronological = [...PROJECTS].sort((a, b) => {
-      if (a.year !== b.year) return a.year - b.year;
-      return PROJECTS.indexOf(a) - PROJECTS.indexOf(b);
-    });
-    return chronological.map((p, i) => ({ ...p, number: i + 1 }));
-  }, []);
-
   const sorted = useMemo(() => {
-    const list = [...numbered];
-    list.sort((a, b) =>
-      sortDir === 'newest' ? b.number - a.number : a.number - b.number
-    );
+    const list = [...PROJECTS];
+    const dir = sortDir === 'newest' ? -1 : 1;
+    list.sort((a, b) => dir * a.releaseDate.localeCompare(b.releaseDate));
     return list;
-  }, [numbered, sortDir]);
+  }, [sortDir]);
 
   const filtered = useMemo(() => {
     if (activeFilter === 'All') return sorted;
@@ -134,7 +125,7 @@ export default function WorkIndex() {
             <span className="text-[10px] tracking-[0.14em] uppercase text-ink-500 font-mono mr-1">
               // filter by
             </span>
-            {CATEGORIES.map((cat) => (
+            {CATEGORIES.filter((cat) => cat === 'All' || counts[cat] > 0).map((cat) => (
               <button
                 key={cat}
                 type="button"
@@ -164,7 +155,7 @@ export default function WorkIndex() {
             <select
               value={sortDir}
               onChange={(e) => setSortDir(e.target.value)}
-              className="bg-transparent text-imps-red border-0 font-mono text-[11px] tracking-[0.1em] uppercase cursor-pointer outline-none"
+              className="bg-transparent text-imps-red border-0 font-mono text-[11px] tracking-[0.1em] uppercase cursor-pointer outline-none pr-2"
               aria-label="Sort order"
             >
               <option value="newest">Newest</option>
@@ -199,9 +190,7 @@ export default function WorkIndex() {
                 <div className="flex-1 h-px bg-ink-700" />
               </div>
 
-              {projects.map((p) => {
-                const isArchived = p.year === FOUNDING_YEAR;
-                return (
+              {projects.map((p, pi) => (
                   <Link
                     key={p.slug}
                     to={`/work/${p.slug}`}
@@ -212,40 +201,28 @@ export default function WorkIndex() {
                     <div
                       className="hidden sm:grid gap-x-4 items-center py-3.5 px-2 -mx-2 rounded-sm group-hover:bg-ink-800 transition-colors sm:grid-cols-[64px_1fr_120px_140px_28px] lg:grid-cols-[64px_1fr_120px_140px_200px_28px]"
                     >
-                      <div
-                        className={`font-mono text-[12px] tabular-nums ${isArchived ? 'text-ink-600' : 'text-ink-500'}`}
-                      >
-                        {String(p.number).padStart(2, '0')}
+                      <div className="font-mono text-[12px] tabular-nums text-ink-500">
+                        {String(pi + 1).padStart(2, '0')}
                       </div>
                       <div className="min-w-0">
-                        <div
-                          className={`font-sans text-[22px] font-bold tracking-[-0.01em] truncate ${isArchived ? 'text-ink-400' : 'text-white'}`}
-                        >
+                        <div className="font-sans text-[22px] font-bold tracking-[-0.01em] truncate text-white">
                           {p.name}
                         </div>
-                        <div
-                          className={`font-sans text-[14px] truncate ${isArchived ? 'text-ink-600' : 'text-ink-400'}`}
-                        >
+                        <div className="font-sans text-[14px] truncate text-ink-400">
                           {p.indexTagline}
                         </div>
                       </div>
-                      <div
-                        className={`font-mono text-[11px] tracking-[0.1em] uppercase flex items-center gap-1.5 ${isArchived ? 'text-ink-600' : 'text-ink-300'}`}
-                      >
+                      <div className="font-mono text-[11px] tracking-[0.1em] uppercase flex items-center gap-1.5 text-ink-300">
                         <span
                           className="w-1.5 h-1.5 rounded-full bg-imps-red inline-block flex-shrink-0"
                           aria-hidden="true"
                         />
                         {p.kind}
                       </div>
-                      <div
-                        className={`font-mono text-[13px] tabular-nums ${isArchived ? 'text-ink-600' : 'text-ink-300'}`}
-                      >
+                      <div className="font-mono text-[13px] tabular-nums text-ink-300">
                         {p.year}
                       </div>
-                      <div
-                        className={`font-mono text-[11px] tracking-[0.1em] uppercase hidden lg:block truncate ${isArchived ? 'text-ink-600' : 'text-ink-400'}`}
-                      >
+                      <div className="font-mono text-[11px] tracking-[0.1em] uppercase hidden lg:block truncate text-ink-400">
                         {p.stack}
                       </div>
                       <div className="font-sans text-[20px] text-ink-400 group-hover:text-imps-red transition-all group-hover:translate-x-1 motion-reduce:group-hover:translate-x-0">
@@ -255,19 +232,13 @@ export default function WorkIndex() {
 
                     <div className="sm:hidden flex items-center justify-between py-3.5 px-2 -mx-2 rounded-sm group-hover:bg-ink-800 transition-colors">
                       <div className="min-w-0">
-                        <div
-                          className={`font-sans text-[18px] font-bold tracking-[-0.01em] truncate ${isArchived ? 'text-ink-400' : 'text-white'}`}
-                        >
+                        <div className="font-sans text-[18px] font-bold tracking-[-0.01em] truncate text-white">
                           {p.name}
                         </div>
-                        <div
-                          className={`font-sans text-[13px] truncate ${isArchived ? 'text-ink-600' : 'text-ink-400'}`}
-                        >
+                        <div className="font-sans text-[13px] truncate text-ink-400">
                           {p.indexTagline}
                         </div>
-                        <div
-                          className={`font-mono text-[10px] tracking-[0.1em] uppercase mt-1 ${isArchived ? 'text-ink-600' : 'text-ink-500'}`}
-                        >
+                        <div className="font-mono text-[10px] tracking-[0.1em] uppercase mt-1 text-ink-500">
                           {p.kind} &middot; {p.year}
                         </div>
                       </div>
@@ -276,8 +247,7 @@ export default function WorkIndex() {
                       </div>
                     </div>
                   </Link>
-                );
-              })}
+              ))}
             </div>
           ))}
         </Container>

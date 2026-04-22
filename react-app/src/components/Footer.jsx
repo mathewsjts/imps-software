@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 import Container from './Container.jsx';
-import { CURRENT_YEAR } from '../data/constants.js';
+import { BASE_URL, CURRENT_YEAR } from '../data/constants.js';
 
 export default function Footer() {
-  const base = import.meta.env.BASE_URL;
+  const base = BASE_URL;
   return (
     <footer className="bg-ink-900 pt-12 pb-6 border-t border-ink-700">
       <Container>
@@ -15,9 +16,10 @@ export default function Footer() {
             </div>
           </div>
           <FootCol title="Studio" items={[
-            { label: 'Services', href: '#services' },
-            { label: 'Work', href: '#work' },
-            { label: 'Process', href: '#process' },
+            { label: 'Services', to: '/#services' },
+            { label: 'Work', to: '/#work' },
+            { label: 'Process', to: '/#process' },
+            { label: 'About', to: '/#about' },
           ]} />
           <FootCol title="Elsewhere" items={['GitHub \u2197', 'Bluesky \u2197', 'itch.io \u2197']} />
           <FootCol title="Contact" items={['Start a project', 'Press kit']} />
@@ -42,10 +44,11 @@ function FootCol({ title, items }) {
       <ul className="list-none m-0 p-0 flex flex-col gap-2.5 font-sans text-[14px] text-ink-300">
         {items.map((i) => {
           const label = typeof i === 'string' ? i : i.label;
-          const href = typeof i === 'string' ? undefined : i.href;
+          const to = typeof i === 'string' ? undefined : i.to;
+          const className = "hover:text-imps-red focus-visible:text-imps-red focus-visible:outline-none focus-visible:underline cursor-pointer";
           return (
             <li key={label}>
-              <a className="hover:text-imps-red focus-visible:text-imps-red focus-visible:outline-none focus-visible:underline cursor-pointer" href={href}>{label}</a>
+              {to ? <Link className={className} to={to}>{label}</Link> : <span className={className}>{label}</span>}
             </li>
           );
         })}

@@ -1,7 +1,6 @@
 import Container from './Container.jsx';
-import PROJECTS from '../data/projects.js';
+import { liveCount } from '../data/projects.js';
 import { CURRENT_YEAR } from '../data/constants.js';
-const shippedThisYear = PROJECTS.filter((p) => p.year === CURRENT_YEAR).length;
 
 export default function Hero() {
   return (
@@ -20,7 +19,7 @@ export default function Hero() {
         </h1>
 
         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-10 sm:mt-14 md:mt-[72px] pt-6 border-t border-ink-700 text-[10px] sm:text-[11px] text-ink-400 tracking-[0.12em] uppercase">
-          <div><strong className="text-white block mb-1 font-semibold">{String(shippedThisYear).padStart(2, '0')}</strong>SHIPPED THIS YEAR</div>
+          <div><strong className="text-white block mb-1 font-semibold">{String(liveCount).padStart(2, '0')}</strong>LIVE NOW</div>
           <div><strong className="text-white block mb-1 font-semibold">Steam · iOS · Web</strong>PLATFORMS</div>
           <div><strong className="text-white block mb-1 font-semibold">4 weeks</strong>TYPICAL SPRINT</div>
           <div><strong className="text-white block mb-1 font-semibold">Fixed bid</strong>PRICING MODEL</div>

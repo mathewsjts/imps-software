@@ -70,7 +70,7 @@ export default function ProjectDetail() {
       <nav aria-label="Breadcrumb" className="border-b border-ink-700">
         <Container>
           <ol className="flex items-center gap-2.5 py-[18px] list-none m-0 p-0 text-[11px] tracking-[0.14em] uppercase text-ink-400">
-            <li><a href="/" className="hover:text-imps-red transition-colors">IMPS</a></li>
+            <li><Link to="/" className="hover:text-imps-red transition-colors">IMPS</Link></li>
             <li aria-hidden="true" className="text-ink-500">/</li>
             <li><Link to="/work" className="hover:text-imps-red transition-colors">Work</Link></li>
             <li aria-hidden="true" className="text-ink-500">/</li>

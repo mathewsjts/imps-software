@@ -4,7 +4,7 @@ import SectionHead from './SectionHead.jsx';
 import PROJECTS from '../data/projects.js';
 
 const MAX_FEATURED = 5;
-const featured = PROJECTS.filter((p) => p.featured).slice(0, MAX_FEATURED);
+const featured = PROJECTS.filter((p) => p.featured).sort((a, b) => b.releaseDate.localeCompare(a.releaseDate)).slice(0, MAX_FEATURED);
 const hasMore = PROJECTS.length > featured.length;
 
 export default function Work() {
