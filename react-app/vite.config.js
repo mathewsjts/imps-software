@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
-const base = process.env.VITE_BASE || '/imps-studio/';
+const base = process.env.VITE_BASE || '/';
 
 export default defineConfig({
   plugins: [react()],
